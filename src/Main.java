@@ -11,12 +11,10 @@ public class Main {
 
         System.out.println("Task 2: ");
         System.out.println("Введите, какая у вас операционная система (0 — iOS, 1 — Android): ");
-        byte clientOS = scanner.nextByte();
+        int clientOS = scanner.nextInt();
         System.out.println("Введите год выпуска вашей модели: ");
-        short yearOfReleaseDevice = scanner.nextShort();
+        int yearOfReleaseDevice = scanner.nextInt();
         checkOSAndYear(clientOS, yearOfReleaseDevice);
-        String message = checkOSAndYear(clientOS, yearOfReleaseDevice);
-        System.out.println(message);
 
         System.out.println("Task 3: ");
         byte deliveryDistance = 95;
@@ -41,26 +39,26 @@ public class Main {
         }
     }
 
-    public static String checkOSAndYear(byte number, short Year) {
-        short currentYear = (short) LocalDate.now().getYear();
-        String message;
-        if (Year < currentYear && number <= 1 && number >= 0) {
-            if (number == 1) {
-                message = "Установите облегченную версию приложения для Android по ссылке.";
-                return message;
-            } else {
-                message = "Установите облегченную версию приложения для iOS по ссылке.";
-                return message;
+    public static void checkOSAndYear(int number, int Year) {
+        int currentYear = LocalDate.now().getYear();
+        if (Year >= currentYear && (number == 1 || number == 0)) {
+            if (number == 0) {
+                System.out.println("Установите версию приложения для iOS по ссылке.");
             }
-        } else if (number == 1) {
-            message = "Установите версию приложения для Android по ссылке.";
-            return message;
-        } else if (number == 0) {
-            message = "Установите версию приложения для iOS по ссылке.";
-            return message;
-        } else {
-            message = "Не определена операционная система.";
-            return message;
+            if (number == 1) {
+                System.out.println("Установите версию приложения для Android по ссылке.");
+            }
+        }
+        if (Year < currentYear && (number == 1 || number == 0)) {
+            if (number == 0) {
+                System.out.println("Установите облегченную версию приложения для iOS по ссылке.");
+            }
+            if (number == 1) {
+                System.out.println("Установите облегченную версию приложения для Android по ссылке.");
+            }
+        }
+        if (number != 1 && number != 0) {
+            System.out.println("Не определена операционная система.");
         }
     }
 
